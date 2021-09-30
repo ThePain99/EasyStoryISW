@@ -23,6 +23,14 @@ pipeline {
                 }
             }
         }
+	    
+	stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'MAVEN_3_6_3') {
+                    bat 'mvn deploy'
+                }
+            }
+        }
 
 
         stage ('package Stage') {
@@ -32,6 +40,8 @@ pipeline {
                 }
             }
         }
+	    
+	
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
             steps {
