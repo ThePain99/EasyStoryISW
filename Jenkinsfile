@@ -24,13 +24,13 @@ pipeline {
             }
         }
 	    
-	stage ('Deployment Stage') {
+	/*stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'MAVEN_3_6_3') {
                     bat 'mvn apigee-enterprise:deploy'
                 }
             }
-        }
+        }*/
 
 
         stage ('package Stage') {
@@ -42,15 +42,15 @@ pipeline {
         }
 	    
 	
-		/* // Descomentar cuando se tenga instalado en Tomcat
+		 // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
             steps {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
                 withMaven(maven : 'MAVEN_3_6_3') {
-					bat '"C:\\Program Files\\Git\\mingw64\\bin\\curl.exe" -T ".\\target\\sistema-ventas-spring.war" "http://tomcat:tomcat@localhost:9090/manager/text/deploy?path=/sistema-ventas-spring&update=true"'
+					bat '"C:\\Program Files\\Git\\mingw64\\bin\\curl.exe" -T ".\\target\\easystory_war.war" "http://tomcat:tomcat@localhost:9090/manager/text/deploy?path=/easystory&update=true"'
                 } 
             }
-        }*/
+        }
 
     }
 }
