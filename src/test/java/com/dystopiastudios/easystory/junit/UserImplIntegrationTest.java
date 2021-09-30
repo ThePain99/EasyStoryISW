@@ -38,45 +38,6 @@ public class UserImplIntegrationTest {
         }
     }
 
-    @Test
-    @DisplayName("When GetUserByUsername With Valid User Then Returns User")
-    public void whenGetUserByUsernameWithValidUserThenReturnsUser(){
-        String username = "ProUser1";
-        User user = new User();
-        user.setId(1L);
-        user.setUsername(username);
 
-        when(userRepository.findByUsername(username))
-                .thenReturn(Optional.of(user));
-
-        // Act
-        User foundUser = userService.getUserByUsername(username);
-
-        // Assert
-        assertThat(foundUser.getUsername()).isEqualTo(username);
-    }
-
-
-    @Test
-    @DisplayName("When GetUserByUsername With Invalid Username Then Returns ResourceNotFoundException")
-    public void whenGetUserByUsernameWithInvalidUsernameThenReturnsResourceNotFoundException() {
-        // Arrange
-        String username = "ProUser1";
-        String template = "Resource %s not found for %s with value %s";
-        when(userRepository.findByUsername(username))
-                .thenReturn(Optional.empty());
-        String expectedMessage = String.format(template, "User", "Username", username);
-
-        // Act
-        Throwable exception = catchThrowable(() -> {
-            User foundUser = userService.getUserByUsername(username);
-        });
-
-        // Assert
-        assertThat(exception)
-                .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage(expectedMessage);
-
-    }
 }
 
