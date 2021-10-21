@@ -42,15 +42,6 @@ pipeline {
             }
         }
 
-	    stage('Deploy to Tomcat'){
-             bat "copy target\\easystory_war.war \"${tomcatWeb}\\easystory_war.war\""
-           }
-              stage ('Start Tomcat Server') {
-                 sleep(time:5,unit:"SECONDS")
-                 bat "${tomcatBin}\\startup.bat"
-                 sleep(time:100,unit:"SECONDS")
-           }
-
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
             steps {
