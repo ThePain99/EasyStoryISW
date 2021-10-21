@@ -24,13 +24,13 @@ pipeline {
             }
         }
 	
-	stage ('Deployment Stage') {
+	/*stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'MAVEN_3_6_3') {
                     bat 'mvn deploy'
                 }
             }
-        }
+        }*/
 
         stage ('package Stage') {
             steps {
