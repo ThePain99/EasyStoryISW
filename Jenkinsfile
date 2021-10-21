@@ -4,7 +4,8 @@ pipeline {
         maven 'MAVEN_3_6_3' 
         jdk 'JDK_1_13' 
     }
-	
+	def tomcatWeb = 'C:\\Users\\josep\\Desktop\\Ciclo 2021-2\\Repositorio Apps\\EasyStoryISW\\.idea\\artifacts'
+	def tomcatBin = 'C:\\Users\\josep\\Documents\\apache-tomcat-9.0.53\\bin'
     stages {
         stage ('Compile Stage') {
 
@@ -23,6 +24,7 @@ pipeline {
                 }
             }
         }
+
 	
 	/*stage ('Deployment Stage') {
             steps {
@@ -39,7 +41,15 @@ pipeline {
                 }
             }
         }
-	    
+
+	    stage('Deploy to Tomcat'){
+             bat "copy target\\easystory_war.war \"${tomcatWeb}\\easystory_war.war\""
+           }
+              stage ('Start Tomcat Server') {
+                 sleep(time:5,unit:"SECONDS")
+                 bat "${tomcatBin}\\startup.bat"
+                 sleep(time:100,unit:"SECONDS")
+           }
 
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
