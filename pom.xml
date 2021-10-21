@@ -159,7 +159,6 @@
                 <configuration>
                     <source>14</source>
                     <target>14</target>
-                    <outputDirectory>C:\Users\josep\Documents\apache-tomcat-9.0.53\webapps</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
