@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools { 
         maven 'MAVEN_3_6_3' 
-        jdk 'JDK_1_12' 
+        jdk 'JDK_1_13' 
     }
 	
     stages {
@@ -23,7 +23,14 @@ pipeline {
                 }
             }
         }
-
+	
+	stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'MAVEN_3_6_3') {
+                    bat 'mvn deploy'
+                }
+            }
+        }
 
         stage ('package Stage') {
             steps {
@@ -32,6 +39,8 @@ pipeline {
                 }
             }
         }
+	    
+
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
             steps {
