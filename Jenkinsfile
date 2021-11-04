@@ -39,6 +39,12 @@ pipeline {
                 }
             }
         }
+	    
+	    stage ('heroku deploy') {
+                    steps {
+                        git push remote heroku
+                    }
+                }
 
 		 // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
